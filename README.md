@@ -17,6 +17,8 @@ que irá produzir uma mensagem no kafka
 ### Como enviar a mensagem para o kafka ?
 * HTTP GET http://localhost:8081/
 
+![img_3.png](img_3.png)
+
 ## Como verificar se a mensagem foi recebida ?
 * Acessar o kafka-ui http://localhost:8080/
 
