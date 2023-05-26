@@ -9,6 +9,35 @@ que irá produzir uma mensagem no kafka
 ## Dependencias
 * docker e docker-compose
 
+## Observação
+
+* O topico esta configurado nas variaveis de ambiente no docker-compose
+```yaml
+services:
+  app:
+    container_name: app
+    build: .
+    depends_on:
+      - kafka
+      - zookeeper
+    ports:
+      - "8081:8081"
+      - "8000:8000"
+    environment:
+      SERVER_PORT: 8081
+      KAFA_HOST: kafka:9092
+      KAFKA_TOPICO: topico.teste   <----------
+```
+
+* Para recuperar o nome do tópico:
+
+```java
+@Autowired
+private Environment env;
+
+String topico = Objects.requireNonNull(env.getProperty("KAFKA_TOPICO"));
+```
+
 ## How to ?
 
 ### Como roda o projeto ?
@@ -22,14 +51,14 @@ que irá produzir uma mensagem no kafka
 ## Como verificar se a mensagem foi recebida ?
 * Acessar o kafka-ui http://localhost:8080/
 
-![img.png](img.png)
+![img_4.png](img_4.png)
 
 
-* Acessar o topico ```pendentes```
+* Acessar o topico ```topico.teste```
 
-![img_1.png](img_1.png)
+![img_5.png](img_5.png)
 
 
 * Acessar a aba Messages
 
-![img_2.png](img_2.png)
+![img_6.png](img_6.png)
